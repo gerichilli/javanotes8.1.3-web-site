@@ -18,8 +18,11 @@
   text-align: center;
 }
 
+img {
+  background-color: #e5e6e9;
+}
+
 img.bordered {
   border: solid var(--borderPrimary) 1px;
-  background-color: #e5e6e9;
   padding: 0.625rem;
 }

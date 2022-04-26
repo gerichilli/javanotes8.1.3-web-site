@@ -23,7 +23,10 @@ function init() {
   }
 
   document.documentElement.setAttribute("data-theme", dataTheme);
-  changeThemeButton(dataTheme);
+
+  if (changeThemeBtn) {
+    changeThemeButton(dataTheme);
+  }
 }
 
 init();
@@ -67,12 +70,35 @@ function changeThemeButton(currentTheme) {
 }
 
 /* LISTEN FOR EVENT */
-changeFontBtn &&
+if (changeFontBtn) {
   changeFontBtn.addEventListener("click", function () {
     handleChangeFont();
   });
+}
 
-changeThemeBtn &&
+if (changeThemeBtn) {
   changeThemeBtn.addEventListener("click", function () {
     handleChangeTheme();
   });
+}
+
+/* Add code to pre */
+const preEls = document.querySelectorAll("pre");
+
+if (preEls.length) {
+  preEls.forEach(el => {
+    let codeEl = el.querySelector("code");
+
+    if (!codeEl) {
+      codeEl = document.createElement("code");
+      codeEl.className = "language-java";
+      codeEl.innerHTML = el.innerHTML;
+      el.innerHTML = "";
+      el.appendChild(codeEl);
+    } else {
+      let html = codeEl.innerHTML.trim();
+      codeEl.innerHTML = "";
+      codeEl.innerHTML = html;
+    }
+  });
+}
