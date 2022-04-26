@@ -1,0 +1,48 @@
+html {
+  /* FONTS */
+  --font-serif: "IBM Plex Serif", Georgia, Times New Roman, serif;
+  --font-sans: "Karla", BlinkMacSystemFont, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  --font-code: "Roboto Mono", monospace;
+}
+
+html,
+html[data-theme="dark"] {
+  --backgroundBase: #1c1e21;
+  --textBase: #e5e6e9;
+  --titleBase: #ffffff;
+
+  --borderPrimary: #35383f;
+  --borderAction: #90aaf1;
+
+  --textNew: #ff79c6;
+  --textClass: #a85cf9;
+  --textPType: #f8b400;
+  --textBnf: #83bd75;
+  --textGlossary: #00c897;
+
+  --inlineCodeBg: #282a36;
+  --inlineCodeBase: #c4c7cf;
+
+  --textAction: #4d77ff;
+  --textQuestion: #fdc073;
+  --textAnswer: #2fdd92;
+  --textActionHover: #e3796a;
+  --textActionActive: #d2483e;
+  --textActionVisited: #5584ac;
+
+  --textUnknowned: #fc4f4f;
+}
+
+html[data-theme="light"] {
+  --backgroundBase: #f8fafc;
+  --textBase: #334155;
+  --titleBase: #1a3c40;
+
+  --borderPrimary: #ddd;
+
+  --textPType: #f76e11;
+  --textQuestion: #d67d3e;
+
+  --inlineCodeBg: #e2e3e7;
+  --inlineCodeBase: #76777c;
+}

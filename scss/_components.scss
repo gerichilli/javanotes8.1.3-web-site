@@ -1,0 +1,214 @@
+/* BUTTON */
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  &--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--borderPrimary);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.25em;
+
+    &:hover {
+      border-color: var(--borderAction);
+      color: var(--textAction);
+    }
+  }
+}
+
+/* QUIZ */
+
+p.question {
+  font-weight: bold;
+  color: var(--textQuestion);
+  margin-top: 0.25rem;
+}
+
+div.quiz-question,
+div.quiz-answer {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--borderPrimary);
+  border-radius: 8px;
+  margin: 0.75rem 0;
+}
+
+p.answer {
+  font-weight: bold;
+  color: var(--textAnswer);
+  margin-top: 0.25rem;
+}
+
+/* SCRIPT */
+pre {
+  margin-bottom: 1rem;
+}
+
+code,
+pre {
+  font-family: var(--font-code);
+  font-size: 0.9375rem;
+  hyphens: auto;
+}
+
+pre code.hljs {
+  padding-left: 1.5rem;
+}
+
+// Dark mode
+
+/*
+Date: 24 Fev 2015
+Author: Pedro Oliveira <kanytu@gmail . com>
+*/
+
+.hljs {
+  color: #a9b7c6;
+  background: #282b2e;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet {
+  color: #6897bb;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-deletion {
+  color: #cc7832;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link {
+  color: #629755;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #999;
+}
+
+.hljs-meta {
+  color: #bbb529;
+}
+
+.hljs-string,
+.hljs-attribute,
+.hljs-addition {
+  color: #6a8759;
+}
+
+.hljs-section,
+.hljs-title,
+.hljs-type {
+  color: #ffc66d;
+}
+
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #e8bf6a;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+// light mode
+html[data-theme="light"] {
+  /*
+Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
+*/
+
+  .hljs {
+    background: #ecedee;
+    color: #434f54;
+  }
+
+  .hljs-subst {
+    color: #434f54;
+  }
+
+  .hljs-keyword,
+  .hljs-attribute,
+  .hljs-selector-tag,
+  .hljs-doctag,
+  .hljs-name {
+    color: #00979d;
+  }
+
+  .hljs-built_in,
+  .hljs-literal,
+  .hljs-bullet,
+  .hljs-code,
+  .hljs-addition {
+    color: #d35400;
+  }
+
+  .hljs-regexp,
+  .hljs-symbol,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-link,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo {
+    color: #00979d;
+  }
+
+  .hljs-type,
+  .hljs-string,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-quote,
+  .hljs-template-tag,
+  .hljs-deletion {
+    color: #005c5f;
+  }
+
+  .hljs-comment {
+    color: rgba(149, 165, 166, 0.8);
+  }
+
+  .hljs-meta .hljs-keyword {
+    color: #728e00;
+  }
+
+  .hljs-meta {
+    color: #434f54;
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-function {
+    color: #728e00;
+  }
+
+  .hljs-title,
+  .hljs-section {
+    color: #880000;
+    font-weight: bold;
+  }
+
+  .hljs-number {
+    color: #8a7b52;
+  }
+}

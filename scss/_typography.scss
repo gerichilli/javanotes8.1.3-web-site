@@ -1,0 +1,146 @@
+p {
+  margin-bottom: 1rem;
+}
+
+h2,
+h3 {
+  color: var(--titleBase);
+}
+
+h3 {
+  margin-bottom: 1.25rem;
+}
+
+/* TITLE */
+.chapter_title,
+.quiz_title,
+.section_title {
+  text-align: center;
+  color: var(--titleBase);
+}
+
+.chapter_title {
+  font-size: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 1.5rem;
+  }
+}
+
+.quiz_title {
+  margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 1.25rem;
+  }
+}
+
+/* SUBSECTION */
+.subsections {
+  border: 1px solid var(--borderPrimary);
+  max-width: 15rem;
+  padding: 0 1.6rem;
+  padding-top: 0.25rem;
+  padding-bottom: 1rem;
+}
+
+.subsections hr {
+  margin: 0.25rem 0;
+}
+
+/* LINKS */
+a:not(.btn) {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+
+  &:link {
+    color: var(--textAction);
+  }
+
+  &:visited {
+    color: var(--textActionVisited);
+  }
+
+  &:active {
+    color: var(--textActionActive);
+    border-bottom: 1px solid currentColor;
+  }
+
+  &:hover {
+    color: var(--textActionHover);
+    cursor: pointer;
+    border-bottom: 1px solid currentColor;
+  }
+}
+
+/* MARKS */
+span.sourceref {
+  font-style: italic;
+}
+
+span.newword {
+  color: var(--textNew);
+  font-weight: 500;
+}
+
+span.ptype {
+  color: var(--textPType);
+}
+
+span.classname {
+  color: var(--textClass);
+  font-weight: 500;
+}
+
+span.bnf {
+  font-weight: 500;
+  color: var(--textBnf);
+}
+
+span.code {
+  font-family: var(--font-code);
+  background-color: var(--inlineCodeBg);
+  color: var(--inlineCodeBase);
+  font-size: 0.875rem;
+  padding: 0 0.25em;
+}
+
+h3.exercise {
+  color: var(--textQuestion);
+}
+
+div.exercisesubtitle {
+  color: var(--textAnswer);
+}
+
+p.glossary_item {
+  text-indent: -30px;
+  padding-left: 30px;
+}
+
+span.glossary_term {
+  font-weight: 700;
+  color: var(--textGlossary);
+}
+
+span.codedef {
+  color: var(--textNew);
+  font-family: var(--font-code);
+}
+
+span.atype {
+  color: var(--textNew);
+  font-family: var(--font-code);
+}
+
+span.newcode {
+  font-family: var(--font-code);
+  color: var(--textNew);
+}
+
+/* DIVIDER */
+hr {
+  border: none;
+  border-top: 2px solid var(--borderPrimary);
+  margin: 1.25rem 0;
+}

@@ -1,0 +1,25 @@
+.d-flex {
+  display: flex;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mr-5 {
+  margin-right: 1.25rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+img.bordered {
+  border: solid var(--borderPrimary) 1px;
+  background-color: #e5e6e9;
+  padding: 0.625rem;
+}
