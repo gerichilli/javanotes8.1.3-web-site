@@ -1,107 +1,81 @@
 <html>
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Javanotes 8.1.3, Section 5.4 -- Programming Example: Card, Hand, Deck</title>
-<link type="text/css" rel="stylesheet" href="../javanotes.css">
-</head>
-<body>
-<div class="page">
-<div align="right">
-<small>
-        [  <a href="s3.html">Previous Section</a> |
-           <a href="s5.html">Next Section</a> |
-           <a href="index.html">Chapter Index</a> | 
-        <a href="../index.html">Main Index</a> ]
-    </small>
-</div>
-<hr>
-<table class="subsections" vspace="8" hspace="8" cellpadding="5" border="2" align="right">
-<tr>
-<td>
-<div align="center">
-<b>Subsections</b>
-<hr>
-<small><a href="#OOP.4.1">Designing the classes</a>
-<br>
-<a href="#OOP.4.2">The Card Class</a>
-<br>
-<a href="#OOP.4.3">Example: A Simple Card Game</a>
-<br>
-</small>
-</div>
-</td>
-</tr>
-</table>
-<div class="content">
-<h3 class="section_title">Section 5.4</h3>
-<h2 class="section_title">Programming Example: Card, Hand, Deck</h2>
-<hr class="break">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javanotes 8.1.3, Section 5.4 -- Programming Example: Card, Hand, Deck</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="../script.js" defer></script>
+    <script defer>
+      hljs.highlightAll();
+    </script>
+    <link type="text/css" rel="stylesheet" href="../javanotes.css" />
+  </head>
+  <body>
+    <nav class="navigation">
+      <a href="../index.html" class="btn btn--icon"><i class="bi bi-house"></i></a>
+      <a href="index.html" class="btn btn--icon"><i class="bi bi-list-ol"></i></a>
+      <a href="s3.html" class="btn btn--icon"><i class="bi bi-caret-left"></i></a>
+      <a href="s5.html" class="btn btn--icon"><i class="bi bi-caret-right"></i></a>
+      <button class="btn btn--icon" id="changeFont"><i class="bi bi-fonts"></i></button>
+      <button class="btn btn--icon" id="changeTheme">
+        <i class="bi bi-sun" id="lightMode"></i>
+        <i class="bi bi-moon-stars" id="darkMode" style="display: none"></i>
+      </button>
+    </nav>
+    <div class="page">
+      <hr />
+      <div class="subsections">
+        <b>Subsections</b>
+        <hr />
+        <small
+          ><a href="#OOP.4.1">Designing the classes</a>
+          <br />
+          <a href="#OOP.4.2">The Card Class</a>
+          <br />
+          <a href="#OOP.4.3">Example: A Simple Card Game</a>
+          <br />
+        </small>
+      </div>
+      <div class="content">
+        <h3 class="section_title">Section 5.4</h3>
+        <h2 class="section_title">Programming Example: Card, Hand, Deck</h2>
+        <hr class="break" />
 
+        <p>
+          In this section, we look at some specific examples of object-oriented design in a domain that is simple enough that we have a chance of coming up with something reasonably reusable. Consider card games that are played with a standard deck of playing cards (a so-called "poker" deck, since
+          it is used in the game of poker).
+        </p>
 
+        <hr class="break" />
+        <h3 class="subsection_title">
+          <a name="OOP.4.1">5.4.1&nbsp;&nbsp;Designing the classes</a>
+        </h3>
 
-<p>In this section, we look at some specific examples of object-oriented design
-in a domain that is simple enough that we have a
-chance of coming up with something reasonably reusable. Consider card games
-that are played with a standard deck of playing cards (a so-called "poker"
-deck, since it is used in the game of poker).</p>
-   
+        <p>
+          In a typical card game, each player gets a hand of cards. The deck is shuffled and cards are dealt one at a time from the deck and added to the players' hands. In some games, cards can be removed from a hand, and new cards can be added. The game is won or lost depending on the value (ace,
+          2, 3, ..., king) and suit (spades, diamonds, clubs, hearts) of the cards that a player receives. If we look for nouns in this description, there are several candidates for objects: game, player, hand, card, deck, value, and suit. Of these, the value and the suit of a card are simple
+          values, and they might just be represented as instance variables in a <span class="classname">Card</span> object. In a complete program, the other five nouns might be represented by classes. But let's work on the ones that are most obviously reusable: <i>card</i>, <i>hand</i>, and
+          <i>deck</i>.
+        </p>
 
-<hr class="break">
-<h3 class="subsection_title">
-<a name="OOP.4.1">5.4.1&nbsp;&nbsp;Designing the classes</a>
-</h3>
+        <p>
+          If we look for verbs in the description of a card game, we see that we can <i>shuffle</i> a deck and <i>deal</i> a card from a deck. This gives use us two candidates for instance methods in a <span class="classname">Deck</span> class: <span class="code">shuffle()</span> and
+          <span class="code">dealCard()</span>. Cards can be added to and removed from hands. This gives two candidates for instance methods in a <span class="classname">Hand</span> class: <span class="code">addCard()</span> and <span class="code">removeCard()</span>. Cards are relatively passive
+          things, but we at least need to be able to determine their suits and values. We will discover more instance methods as we go along.
+        </p>
 
+        <p>
+          First, we'll design the deck class in detail. When a deck of cards is first created, it contains 52 cards in some standard order. The <span class="classname">Deck</span> class will need a constructor to create a new deck. The constructor needs no parameters because any new deck is the same
+          as any other. There will be an instance method called <span class="code">shuffle()</span> that will rearrange the 52 cards into a random order. The <span class="code">dealCard()</span> instance method will get the next card from the deck. This will be a function with a return type of
+          <span class="code">Card</span>, since the caller needs to know what card is being dealt. It has no parameters&mdash;when you deal the next card from the deck, you don't provide any information to the deck; you just get the next card, whatever it is. What will happen if there are no more
+          cards in the deck when its <span class="code">dealCard()</span> method is called? It should probably be considered an error to try to deal a card from an empty deck, so the deck can throw an exception in that case. But this raises another question: How will the rest of the program know
+          whether the deck is empty? Of course, the program could keep track of how many cards it has used. But the deck itself should know how many cards it has left, so the program should just be able to ask the deck object. We can make this possible by specifying another instance method,
+          <span class="code">cardsLeft()</span>, that returns the number of cards remaining in the deck. This leads to a full specification of all the subroutines in the <span class="classname">Deck</span> class:
+        </p>
 
-<p>In a typical card game, each
-player gets a hand of cards. The deck is shuffled and cards are dealt one at a
-time from the deck and added to the players' hands. In some games, cards can be
-removed from a hand, and new cards can be added. The game is won or lost
-depending on the value (ace, 2, 3, ..., king) and suit (spades, diamonds, clubs,
-hearts) of the cards that a player receives. If we look for nouns in this
-description, there are several candidates for objects: game, player, hand,
-card, deck, value, and suit. Of these, the value and the suit of a card are
-simple values, and they might just be represented as instance variables in a
-<span class="classname">Card</span> object. In a complete program, the other five nouns might be
-represented by classes. But let's work on the ones that are most obviously
-reusable: <i>card</i>, <i>hand</i>, and <i>deck</i>.</p>
-
-
-<p>If we look for verbs in the description of a card game, we see that we can
-<i>shuffle</i> a deck and <i>deal</i> a card from a deck. This gives use us two candidates
-for instance methods in a <span class="classname">Deck</span> class: <span class="code">shuffle()</span>
-and <span class="code">dealCard()</span>. Cards can be added to and
-removed from hands. This gives two candidates for instance methods in a
-<span class="classname">Hand</span> class: <span class="code">addCard()</span> and <span class="code">removeCard()</span>.
-Cards are relatively passive things, but we at least need to be
-able to determine their suits and values. We will discover more instance
-methods as we go along.</p>
-
-   
-
-<p>First, we'll design the deck class in detail. When a deck of cards is first
-created, it contains 52 cards in some standard order. The <span class="classname">Deck</span> class
-will need a constructor to create a new deck. The constructor needs no
-parameters because any new deck is the same as any other. There will be an
-instance method called <span class="code">shuffle()</span> that will rearrange the 52 cards into
-a random order. The <span class="code">dealCard()</span> instance method will get the next card
-from the deck. This will be a function with a return type of <span class="code">Card</span>,
-since the caller needs to know what card is being dealt. It has no parameters&mdash;when
-you deal the next card from the deck, you don't provide any information to the
-deck; you just get the next card, whatever it is.
-What will happen if there are no more cards in the deck when its
-<span class="code">dealCard()</span> method is called? It should probably be considered an error
-to try to deal a card from an empty deck, so the deck can throw an exception in that case.
-But this raises another question: How
-will the rest of the program know whether the deck is empty? Of course, the
-program could keep track of how many cards it has used. But the deck itself
-should know how many cards it has left, so the program should just be able to
-ask the deck object. We can make this possible by specifying another instance
-method, <span class="code">cardsLeft()</span>, that returns the number of cards remaining in the
-deck. This leads to a full specification of all the subroutines in the
-<span class="classname">Deck</span> class:</p>
-
-
-<pre>
+        <pre>
 <b>Constructor and instance methods in class Deck:</b>
 
      /**
@@ -128,41 +102,23 @@ deck. This leads to a full specification of all the subroutines in the
       */
      public Card dealCard()</pre>
 
+        <p>
+          This is everything you need to know in order to <b>use</b> the <span class="code">Deck</span> class. Of course, it doesn't tell us how to write the class. This has been an exercise in design, not in coding. You can look at the source code,
+          <span class="sourceref"><a href="../source/chapter5/Deck.java">Deck.java</a></span
+          >, if you want. It should not be a surprise that the class includes an array of <span class="classname">Cards</span> as an instance variable, but there are a few things you might not understand at this point. Of course, you can use the class in your programs as a black box, without
+          understanding the implementation.
+        </p>
 
-<p>This is everything you need to know in order to <b>use</b> the <span class="code">Deck</span> class.
-Of course, it doesn't tell us how to write the class. This has been an exercise
-in design, not in coding.  You can look at the source
-code, <span class="sourceref"><a href="../source/chapter5/Deck.java">Deck.java</a></span>, if you want. 
-It should not be a surprise that the class includes
-an array of <span class="classname">Cards</span> as an instance variable, but there
-are a few things you might not understand at this point.  Of course,
-you can use the class in your programs as a black box,
-without understanding the implementation.</p>
+        <p>
+          We can do a similar analysis for the <span class="classname">Hand</span> class. When a hand object is first created, it has no cards in it. An <span class="code">addCard()</span> instance method will add a card to the hand. This method needs a parameter of type
+          <span class="classname">Card</span> to specify which card is being added. For the <span class="code">removeCard()</span> method, a parameter is needed to specify which card to remove. But should we specify the card itself ("Remove the ace of spades"), or should we specify the card by its
+          position in the hand ("Remove the third card in the hand")? Actually, we don't have to decide, since we can allow for both options. We'll have two <span class="code">removeCard()</span> instance methods, one with a parameter of type <span class="classname">Card</span> specifying the card
+          to be removed and one with a parameter of type <span class="ptype">int</span> specifying the position of the card in the hand. (Remember that you can have two methods in a class with the same name, provided they have different numbers or types of parameters.) Since a hand can contain a
+          variable number of cards, it's convenient to be able to ask a hand object how many cards it contains. So, we need an instance method <span class="code">getCardCount()</span> that returns the number of cards in the hand. When I play cards, I like to arrange the cards in my hand so that
+          cards of the same value are next to each other. Since this is a generally useful thing to be able to do, we can provide instance methods for sorting the cards in the hand. Here is a full specification for a reusable <span class="classname">Hand</span> class:
+        </p>
 
-
-<p>We can do a similar analysis for the <span class="classname">Hand</span> class. When a hand object
-is first created, it has no cards in it. An <span class="code">addCard()</span> instance method
-will add a card to the hand. This method needs a parameter of type
-<span class="classname">Card</span> to specify which card is being added. For the
-<span class="code">removeCard()</span> method, a parameter is needed to specify which card to
-remove. But should we specify the card itself ("Remove the ace of spades"), or
-should we specify the card by its position in the hand ("Remove the third card
-in the hand")? Actually, we don't have to decide, since we can allow for both
-options. We'll have two <span class="code">removeCard()</span> instance methods, one with a
-parameter of type <span class="classname">Card</span> specifying the card to be removed and one with
-a parameter of type <span class="ptype">int</span> specifying the position of the card in the
-hand. (Remember that you can have two methods in a class with the same name,
-provided they have different numbers or types of parameters.) Since a hand can contain a
-variable number of cards, it's convenient to be able to ask a hand object how
-many cards it contains. So, we need an instance method <span class="code">getCardCount()</span>
-that returns the number of cards in the hand. When I play cards, I like to
-arrange the cards in my hand so that cards of the same value are next to each
-other. Since this is a generally useful thing to be able to do, we can provide
-instance methods for sorting the cards in the hand. Here is a full
-specification for a reusable <span class="classname">Hand</span> class:</p>
-
-
-<pre>
+        <pre>
 
 <b>Constructor and instance methods in class Hand:</b>
 
@@ -223,99 +179,61 @@ specification for a reusable <span class="classname">Hand</span> class:</p>
      */
     public void sortByValue()</pre>
 
+        <p>
+          Again, there are a few things in the implementation of the class that you won't understand at this point, but that doesn't stop you from using the class in your projects. The source code can be found in the file
+          <span class="sourceref"><a href="../source/chapter5/Hand.java">Hand.java</a></span>
+        </p>
 
-<p>Again, there are a few things in the implementation of the class that
-you won't understand at this point, but that doesn't stop you from
-using the class in your projects.   The source code can be found in
-the file <span class="sourceref"><a href="../source/chapter5/Hand.java">Hand.java</a></span>
-</p>
-   
+        <hr class="break" />
+        <h3 class="subsection_title">
+          <a name="OOP.4.2">5.4.2&nbsp;&nbsp;The Card Class</a>
+        </h3>
 
-   
+        <p>
+          We will look at the design and implementation of a <span class="classname">Card</span> class in full detail. The class will have a constructor that specifies the value and suit of the card that is being created. There are four suits, which can be represented by the integers 0, 1, 2, and 3.
+          It would be tough to remember which number represents which suit, so I've defined named constants in the <span class="classname">Card</span> class to represent the four possibilities. For example, <span class="code">Card.SPADES</span> is a constant that represents the suit, "spades."
+          (These constants are declared to be <span class="code">public</span> <span class="code">final</span> <span class="code">static</span> <span class="code">ints</span>. It might be better to use an enumerated type, but I will stick here to integer-valued constants.) The possible values of a
+          card are the numbers 1, 2, ..., 13, with 1 standing for an ace, 11 for a jack, 12 for a queen, and 13 for a king. Again, I've defined some named constants to represent the values of aces and face cards. (When you read the <span class="classname">Card</span> class, you'll see that I've also
+          added support for Jokers.)
+        </p>
 
-<hr class="break">
-<h3 class="subsection_title">
-<a name="OOP.4.2">5.4.2&nbsp;&nbsp;The Card Class</a>
-</h3>
+        <p>A <span class="classname">Card</span> object can be constructed knowing the value and the suit of the card. For example, we can call the constructor with statements such as:</p>
 
-
-<p>We will look at the design and implementation of a <span class="classname">Card</span>
-class in full detail. The class will have a constructor that specifies the value and suit of
-the card that is being created. There are four suits, which can be represented
-by the integers 0, 1, 2, and 3. It would be tough to remember which number
-represents which suit, so I've defined named constants in the <span class="classname">Card</span>
-class to represent the four possibilities. For example, <span class="code">Card.SPADES</span> is
-a constant that represents the suit, "spades." (These constants are declared to
-be <span class="code">public</span> <span class="code">final</span> <span class="code">static</span> <span class="code">ints</span>. 
-It might be better to use an enumerated type, but I will stick here to
-integer-valued constants.)  The possible
-values of a card are the numbers 1, 2, ..., 13, with 1 standing for an ace, 11
-for a jack, 12 for a queen, and 13 for a king. Again, I've defined some named
-constants to represent the values of aces and face cards.  (When you read the
-<span class="classname">Card</span> class, you'll see that I've also added support for
-Jokers.)</p>
-   
-
-<p>A <span class="classname">Card</span> object can be constructed knowing the value and
-the suit of the card.  For example, we can call the constructor with statements
-such as:</p>
-
-
-<pre>card1 = new Card( Card.ACE, Card.SPADES );  // Construct ace of spades.
+        <pre>
+card1 = new Card( Card.ACE, Card.SPADES );  // Construct ace of spades.
 card2 = new Card( 10, Card.DIAMONDS );   // Construct 10 of diamonds.
 card3 = new Card( v, s );  // This is OK, as long as v and s 
-                           //               are integer expressions.</pre>
+                           //               are integer expressions.</pre
+        >
 
+        <p>
+          A <span class="classname">Card</span> object needs instance variables to represent its value and suit. I've made these <span class="code">private</span> so that they cannot be changed from outside the class, and I've provided getter methods <span class="code">getSuit()</span> and
+          <span class="code">getValue()</span> so that it will be possible to discover the suit and value from outside the class. The instance variables are initialized in the constructor, and are never changed after that. In fact, I've declared the instance variables
+          <span class="code">suit</span> and <span class="code">value</span> to be <span class="code">final</span>, since they are never changed after they are initialized. An instance variable can be declared <span class="code">final</span> provided it is either given an initial value in its
+          declaration or is initialized in every constructor in the class. Since all its instance variables are <span class="code">final</span>, a <span class="classname">Card</span> is an immutable object.
+        </p>
 
-<p>A <span class="classname">Card</span> object needs instance variables to represent its value and
-suit. I've made these <span class="code">private</span> so that they cannot be changed from
-outside the class, and I've provided getter methods <span class="code">getSuit()</span> and
-<span class="code">getValue()</span> so that it will be possible to discover the suit and value
-from outside the class. The instance variables are initialized in the
-constructor, and are never changed after that. In fact, I've declared the
-instance variables <span class="code">suit</span> and <span class="code">value</span> to be <span class="code">final</span>, since
-they are never changed after they are initialized. An instance variable can be
-declared <span class="code">final</span> provided it is either given an initial value in its
-declaration or is initialized in every constructor in the class.  Since all its
-instance variables are <span class="code">final</span>, a <span class="classname">Card</span> is
-an immutable object.</p>
+        <p>
+          Finally, I've added a few convenience methods to the class to make it easier to print out cards in a human-readable form. For example, I want to be able to print out the suit of a card as the word "Diamonds", rather than as the meaningless code number 2, which is used in the class to
+          represent diamonds. Since this is something that I'll probably have to do in many programs, it makes sense to include support for it in the class. So, I've provided instance methods <span class="code">getSuitAsString()</span> and <span class="code">getValueAsString()</span> to return
+          string representations of the suit and value of a card. Finally, I've defined the instance method <span class="code">toString()</span> to return a string with both the value and suit, such as "Queen of Hearts". Recall that this method will be used automatically whenever a
+          <span class="classname">Card</span> needs to be converted into a <span class="classname">String</span>, such as when the card is concatenated onto a string with the <span class="code">+</span> operator. Thus, the statement
+        </p>
 
+        <pre>System.out.println( "Your card is the " + card );</pre>
 
-<p>Finally, I've added a few convenience methods to the class to make it easier
-to print out cards in a human-readable form. For example, I want to be able to
-print out the suit of a card as the word "Diamonds", rather than as the
-meaningless code number 2, which is used in the class to represent diamonds.
-Since this is something that I'll probably have to do in many programs, it
-makes sense to include support for it in the class. So, I've provided instance
-methods <span class="code">getSuitAsString()</span> and <span class="code">getValueAsString()</span> to return
-string representations of the suit and value of a card. Finally, I've defined the
-instance method <span class="code">toString()</span> to return a string with both the value
-and suit, such as "Queen of Hearts".  Recall that this method will be used automatically
-whenever a <span class="classname">Card</span> needs to be converted into a <span class="classname">String</span>, such as
-when the card is concatenated onto a string with the <span class="code">+</span> operator.
-Thus, the statement</p>
+        <p>is equivalent to</p>
 
+        <pre>System.out.println( "Your card is the " + card.toString() );</pre>
 
-<pre>System.out.println( "Your card is the " + card );</pre>
+        <p>If the card is the queen of hearts, either of these will print out "Your card is the Queen of Hearts".</p>
 
+        <p>
+          Here is the complete <span class="classname">Card</span> class, which can also be found in <span class="sourceref"><a href="../source/chapter5/Card.java">Card.java</a></span
+          >. This class is general enough to be highly reusable, so the work that went into designing, writing, and testing it pays off handsomely in the long run.
+        </p>
 
-<p>is equivalent to</p>
-
-
-<pre>System.out.println( "Your card is the " + card.toString() );</pre>
-
-
-<p>If the card is the queen of hearts, either of these will print out "Your
-card is the Queen of Hearts".</p>
-
-
-<p>Here is the complete <span class="classname">Card</span> class, which can also
-be found in <span class="sourceref"><a href="../source/chapter5/Card.java">Card.java</a></span>.  This class is general enough to be highly
-reusable, so the work that went into designing, writing, and testing it pays
-off handsomely in the long run.</p>
-
-
-<pre>
+        <pre>
 /**
  * An object of type Card represents a playing card from a
  * standard Poker deck, including Jokers.  The card has a suit, which
@@ -464,43 +382,29 @@ public class Card {
    }
    
 
-} // end class Card</pre>
-   
+} // end class Card</pre
+        >
 
+        <hr class="break" />
+        <h3 class="subsection_title">
+          <a name="OOP.4.3">5.4.3&nbsp;&nbsp;Example: A Simple Card Game</a>
+        </h3>
 
-   
+        <p>
+          I will finish this section by presenting a complete program that uses the <span class="classname">Card</span> and <span class="classname">Deck</span> classes. The program lets the user play a very simple card game called HighLow. A deck of cards is shuffled, and one card is dealt from the
+          deck and shown to the user. The user predicts whether the next card from the deck will be higher or lower than the current card. If the user predicts correctly, then the next card from the deck becomes the current card, and the user makes another prediction. This continues until the user
+          makes an incorrect prediction. The number of correct predictions is the user's score.
+        </p>
 
-<hr class="break">
-<h3 class="subsection_title">
-<a name="OOP.4.3">5.4.3&nbsp;&nbsp;Example: A Simple Card Game</a>
-</h3>
+        <p>My program has a static method that plays one game of HighLow. The <span class="code">main()</span> routine lets the user play several games of HighLow. At the end, it reports the user's average score.</p>
 
+        <p>
+          I won't go through the development of the algorithms used in this program, but I encourage you to read it carefully and make sure that you understand how it works. Note in particular that the subroutine that plays one game of HighLow returns the user's score in the game as its return
+          value. This gets the score back to the main program, where it is needed. Here is the program:
+        </p>
 
-<p>I will finish this section by presenting a complete program that uses the
-<span class="classname">Card</span> and <span class="classname">Deck</span> classes. The program lets the user play a very
-simple card game called HighLow. A deck of cards is shuffled, and one card is
-dealt from the deck and shown to the user. The user predicts whether the next
-card from the deck will be higher or lower than the current card. If the user
-predicts correctly, then the next card from the deck becomes the current card,
-and the user makes another prediction. This continues until the user makes an
-incorrect prediction. The number of correct predictions is the user's
-score.</p>
-
-
-<p>My program has a static method that plays one game of HighLow. The
-<span class="code">main()</span> routine lets the user play several games of HighLow. At the
-end, it reports the user's average score.</p>
-
-
-<p>I won't go through the development of the algorithms used in this program,
-but I encourage you to read it carefully and make sure that you understand how
-it works.  Note in particular that the subroutine that plays one game
-of HighLow returns the user's score in the game as its return value.
-This gets the score back to the main program, where it is needed.
-Here is the program:</p>
-
-
-<pre>import textio.TextIO;
+        <pre>
+import textio.TextIO;
 
 /**
  * This program lets the user play HighLow, a simple card game 
@@ -648,21 +552,13 @@ public class HighLow {
    }  // end play()
    
 
-} // end class HighLow</pre>
-   
-   
-
-
-</div>
-<hr>
-<div align="right">
-<small>
-        [  <a href="s3.html">Previous Section</a> |
-           <a href="s5.html">Next Section</a> |
-           <a href="index.html">Chapter Index</a> | 
-        <a href="../index.html">Main Index</a> ]
-    </small>
-</div>
-</div>
-</body>
+} // end class HighLow</pre
+        >
+      </div>
+      <hr />
+      <div align="right">
+        <small> [ <a href="s3.html">Previous Section</a> | <a href="s5.html">Next Section</a> | <a href="index.html">Chapter Index</a> | <a href="../index.html">Main Index</a> ] </small>
+      </div>
+    </div>
+  </body>
 </html>

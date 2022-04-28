@@ -1,49 +1,59 @@
 <html>
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Javanotes 8.1.3, Solution to Exercise 7, Chapter 5</title>
-<link type="text/css" rel="stylesheet" href="../javanotes.css">
-</head>
-<body>
-<div class="page">
-<div align="right">
-<small>
-        [ <a href="exercises.html">Exercises</a> |
-        <a href="index.html">Chapter Index</a> | 
-        <a href="../index.html">Main Index</a> ]
-    </small>
-</div>
-<hr>
-<div class="content">
-<h2>Solution for Programming Exercise 5.7</h2>
-<hr class="break">
-<p>
-<span class="start"><big>T</big>his page contains</span> a sample solution to
-           one of the exercises from <a href="../index.html">Introduction to Programming Using Java</a>.</p>
-<hr>
-<h3 class="exercise">Exercise 5.7:</h3>
-<p>Rewrite the program from the <a href="../c5/ex6-ans.html">previous exercise</a>
-so that it administers a quiz with several different kinds of questions.
-In the previous exercise, you used
-a class to represent addition questions.  For this exercise, you will use the following <span class="code">interface</span>,
-or an equivalent abstract class, to represent the more general idea of a question that has
-an integer as its answer:</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javanotes 8.1.3, Solution to Exercise 7, Chapter 5</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script defer>
+      hljs.highlightAll();
+    </script>
+    <link type="text/css" rel="stylesheet" href="../javanotes.css" />
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navigation">
+      <a href="exercises.html" class="btn btn--icon"><i class="bi bi-arrow-left"></i></a>
+      <a href="../index.html" class="btn btn--icon"><i class="bi bi-house"></i></a>
+      <a href="index.html" class="btn btn--icon"><i class="bi bi-list-ol"></i></a>
+      <button class="btn btn--icon" id="changeFont"><i class="bi bi-fonts"></i></button>
+      <button class="btn btn--icon" id="changeTheme">
+        <i class="bi bi-sun" id="lightMode"></i>
+        <i class="bi bi-moon-stars" id="darkMode" style="display: none"></i>
+      </button>
+    </nav>
+    <div class="page">
+      <hr />
+      <div class="content">
+        <h2>Solution for Programming Exercise 5.7</h2>
+        <hr class="break" />
+        <p>
+          <span class="start"><big>T</big>his page contains</span> a sample solution to one of the exercises from <a href="../index.html">Introduction to Programming Using Java</a>.
+        </p>
+        <hr />
+        <h3 class="exercise">Exercise 5.7:</h3>
+        <p>
+          Rewrite the program from the <a href="../c5/ex6-ans.html">previous exercise</a> so that it administers a quiz with several different kinds of questions. In the previous exercise, you used a class to represent addition questions. For this exercise, you will use the following
+          <span class="code">interface</span>, or an equivalent abstract class, to represent the more general idea of a question that has an integer as its answer:
+        </p>
 
-<pre>public interface IntQuestion {
+        <pre>
+public interface IntQuestion {
     public String getQuestion();
     public int getCorrectAnswer();
-}</pre>
+}</pre
+        >
 
-<p>You can make the <span class="classname">AdditionQuestion</span> class implement the interface
-simply by adding "<span class="code">implements IntQuestion</span>" to its definition.  Write a similar
-class to represent subtraction questions.  When creating a subtraction problem, you should make
-sure that the answer is not negative.</p>
+        <p>
+          You can make the <span class="classname">AdditionQuestion</span> class implement the interface simply by adding "<span class="code">implements IntQuestion</span>" to its definition. Write a similar class to represent subtraction questions. When creating a subtraction problem, you should
+          make sure that the answer is not negative.
+        </p>
 
-<p>For the new program, use an array of type <span class="atype">IntQuestion[]</span> to hold the quiz
-questions.  Include some addition questions and some subtraction questions in the quiz.
-You can also add a couple non-math questions, including this one, created as an anonymous class:</p>
+        <p>For the new program, use an array of type <span class="atype">IntQuestion[]</span> to hold the quiz questions. Include some addition questions and some subtraction questions in the quiz. You can also add a couple non-math questions, including this one, created as an anonymous class:</p>
 
-<pre>IntQuestion bigQuestion = new IntQuestion() {
+        <pre>
+IntQuestion bigQuestion = new IntQuestion() {
     public String getQuestion() {
         return "What is the answer to the ultimate question " +
                  " of life, the universe, and everything?";
@@ -51,25 +61,21 @@ You can also add a couple non-math questions, including this one, created as an 
     public int getCorrectAnswer() {
         return 42;
     }
-};</pre>
+};</pre
+        >
 
-<hr>
-<div class="exercisesubtitle" align="center">
-<big><b>Discussion</b></big>
-</div>
-<hr>
-<p>Where the solution to the previous exercise used an
-array of <span class="classname">AdditionQuestion</span> to store addition problems,
-the new program has to store questions of various types. An array of type
-<span class="atype">IntQuestion[]</span> can hold any object that implements the
-<span class="classname">IntQuestion</span> interface.  That includes 
-objects of type <span class="classname">AdditionQuestion</span> as long as we modify that
-class so that it implements <span class="classname">IntQuestion</span>.  But it can also
-include other types of objects.  For one thing, we want to have subtraction 
-problems.  We can implement subtraction with a class very similar to the class
-for addition questions:</p>
+        <hr />
+        <div class="exercisesubtitle" align="center">
+          <big><b>Discussion</b></big>
+        </div>
+        <hr />
+        <p>
+          Where the solution to the previous exercise used an array of <span class="classname">AdditionQuestion</span> to store addition problems, the new program has to store questions of various types. An array of type <span class="atype">IntQuestion[]</span> can hold any object that implements
+          the <span class="classname">IntQuestion</span> interface. That includes objects of type <span class="classname">AdditionQuestion</span> as long as we modify that class so that it implements <span class="classname">IntQuestion</span>. But it can also include other types of objects. For one
+          thing, we want to have subtraction problems. We can implement subtraction with a class very similar to the class for addition questions:
+        </p>
 
-<pre>class SubtractionQuestion implements IntQuestion {
+        <pre>class SubtractionQuestion implements IntQuestion {
     private int a, b;  // The numbers in the problem.
     public SubtractionQuestion() { // constructor
        a = (int)(Math.random() * 50 + 1);
@@ -88,27 +94,24 @@ for addition questions:</p>
    }
 }</pre>
 
-<p>The exercise asks for subtraction problems for which the answer is not negative.
-There are a number of ways to accomplish that.  For example, you could use a loop
-that would continue selecting random values for <span class="code">a</span> and <span class="code">b</span>
-as long as <span class="code">a&nbsp;-&nbsp;b&nbsp;&lt;&nbsp;0</span>.  You could choose
-<i>b</i> and the <i>answer</i> randomly and then compute <i>a</i> as
-<span class="code">a&nbsp;=&nbsp;answer&nbsp;+&nbsp;b</span>. In my solution, I just swap
-the values of <span class="code">a</span> and <span class="code">b</span> when <span class="code">a&nbsp;-&nbsp;b&nbsp;&lt;&nbsp;0</span>.</p>
+        <p>
+          The exercise asks for subtraction problems for which the answer is not negative. There are a number of ways to accomplish that. For example, you could use a loop that would continue selecting random values for <span class="code">a</span> and <span class="code">b</span> as long as
+          <span class="code">a&nbsp;-&nbsp;b&nbsp;&lt;&nbsp;0</span>. You could choose <i>b</i> and the <i>answer</i> randomly and then compute <i>a</i> as <span class="code">a&nbsp;=&nbsp;answer&nbsp;+&nbsp;b</span>. In my solution, I just swap the values of <span class="code">a</span> and
+          <span class="code">b</span> when <span class="code">a&nbsp;-&nbsp;b&nbsp;&lt;&nbsp;0</span>.
+        </p>
 
-<p>Creating the quiz becomes a more difficult problem in the new version, since
-we need to use several different kinds of questions.  In my solution, the first seven
-questions are math problems.  For each math problem, the program decides randomly whether
-to make it an addition question or a subtraction question.  The last three questions
-are created using anonymous classes, just like the example given in the exercise.
-You can see my solution below.</p>
+        <p>
+          Creating the quiz becomes a more difficult problem in the new version, since we need to use several different kinds of questions. In my solution, the first seven questions are math problems. For each math problem, the program decides randomly whether to make it an addition question or a
+          subtraction question. The last three questions are created using anonymous classes, just like the example given in the exercise. You can see my solution below.
+        </p>
 
-<p>But the three anonymous classes in my solution have a lot in common: They are the same except for
-the particular string that is used to ask the question and the particular number
-that is the correct answer.  A better approach would probably have been to create 
-a class to represent such questions:</p>
+        <p>
+          But the three anonymous classes in my solution have a lot in common: They are the same except for the particular string that is used to ask the question and the particular number that is the correct answer. A better approach would probably have been to create a class to represent such
+          questions:
+        </p>
 
-<pre>public class GeneralQuestion implements IntQuestion {
+        <pre>
+public class GeneralQuestion implements IntQuestion {
     private String question;
     private int answer;
     public GeneralQuestion( String question, int answer ) {
@@ -121,11 +124,13 @@ a class to represent such questions:</p>
     public int getCorrectAnswer() {
         return answer;
     }
-}</pre>
+}</pre
+        >
 
-<p>In that case, the subroutine for creating the quiz would become:</p>
+        <p>In that case, the subroutine for creating the quiz would become:</p>
 
-<pre>private static void createQuiz() {
+        <pre>
+private static void createQuiz() {
     questions = new IntQuestion[10];
     for ( int i = 0; i &lt; 7; i++ ) {
         if (Math.random() &lt; 0.5)
@@ -137,24 +142,25 @@ a class to represent such questions:</p>
     questions[8] = new GeneralQuestion("In what year did the First World War begin?",1914);
     questions[9] = new GeneralQuestion("What is the answer to the ultimate question " +
                                 "of life, the universe, and everything?",42);
-}</pre>
+}</pre
+        >
 
-<p>Aside from the declaration of the array <span class="code">questions</span> 
-and the routine for creating the quiz, everything else in the program can be exactly as
-it was in the previous exercise.  (However, I did change the format of the output in
-<span class="code">gradeQuiz()</span> to make it look better for longer questions.)</p>
+        <p>
+          Aside from the declaration of the array <span class="code">questions</span>
+          and the routine for creating the quiz, everything else in the program can be exactly as it was in the previous exercise. (However, I did change the format of the output in
+          <span class="code">gradeQuiz()</span> to make it look better for longer questions.)
+        </p>
 
-<p>In my solution, just to keep everything in one file, I nested the interface 
-and the two classes that implement it inside the main program class.  It would probably be
-better style to put them all in their own files.</p>
+        <p>In my solution, just to keep everything in one file, I nested the interface and the two classes that implement it inside the main program class. It would probably be better style to put them all in their own files.</p>
 
-<hr>
-<div class="exercisesubtitle" align="center">
-<big><b>The Solution</b></big>
-</div>
-<hr>
+        <hr />
+        <div class="exercisesubtitle" align="center">
+          <big><b>The Solution</b></big>
+        </div>
+        <hr />
 
-<pre class="exercisecode">import textio.TextIO;
+        <pre class="exercisecode">
+import textio.TextIO;
 
 /**
  * This program creates, administers, and grades a quiz made up of ten questions,
@@ -310,17 +316,13 @@ public class GeneralQuiz {
     }
 
 } // end class GeneralQuiz
-</pre>
-
-</div>
-<hr>
-<div align="right">
-<small>
-        [ <a href="exercises.html">Exercises</a> |
-        <a href="index.html">Chapter Index</a> | 
-        <a href="../index.html">Main Index</a> ]
-    </small>
-</div>
-</div>
-</body>
+</pre
+        >
+      </div>
+      <hr />
+      <div align="right">
+        <small> [ <a href="exercises.html">Exercises</a> | <a href="index.html">Chapter Index</a> | <a href="../index.html">Main Index</a> ] </small>
+      </div>
+    </div>
+  </body>
 </html>

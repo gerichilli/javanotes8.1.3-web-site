@@ -1,52 +1,55 @@
 <html>
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Javanotes 8.1.3, Solution to Exercise 1, Chapter 5</title>
-<link type="text/css" rel="stylesheet" href="../javanotes.css">
-</head>
-<body>
-<div class="page">
-<div align="right">
-<small>
-        [ <a href="exercises.html">Exercises</a> |
-        <a href="index.html">Chapter Index</a> | 
-        <a href="../index.html">Main Index</a> ]
-    </small>
-</div>
-<hr>
-<div class="content">
-<h2>Solution for Programming Exercise 5.1</h2>
-<hr class="break">
-<p>
-<span class="start"><big>T</big>his page contains</span> a sample solution to
-           one of the exercises from <a href="../index.html">Introduction to Programming Using Java</a>.</p>
-<hr>
-<h3 class="exercise">Exercise 5.1:</h3>
-<p>In all versions of the
-<span class="classname">PairOfDice</span> class in <a href="../c5/s2.html">Section&nbsp;5.2</a>, the instance
-variables <span class="code">die1</span> and <span class="code">die2</span> are declared to be <span class="code">public</span>.
-They really should be <span class="code">private</span>, so that they would be protected from being changed
-from outside the class. Write another version of the <span class="classname">PairOfDice</span> class
-in which the instance variables <span class="code">die1</span> and <span class="code">die2</span> are
-<span class="code">private</span>. Your class will need "getter" methods that can be used to find out the
-values of <span class="code">die1</span> and <span class="code">die2</span>. (The idea is to protect their values
-from being changed from outside the class, but still to allow the values to be
-read.) Include other improvements in the class, including at least a <span class="code">toString()</span> method. 
-Test your class with a short program that counts how many times a pair of dice is
-rolled, before the total of the two dice is equal to two.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javanotes 8.1.3, Solution to Exercise 1, Chapter 5</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script defer>
+      hljs.highlightAll();
+    </script>
+    <link type="text/css" rel="stylesheet" href="../javanotes.css" />
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navigation">
+      <a href="exercises.html" class="btn btn--icon"><i class="bi bi-arrow-left"></i></a>
+      <a href="../index.html" class="btn btn--icon"><i class="bi bi-house"></i></a>
+      <a href="index.html" class="btn btn--icon"><i class="bi bi-list-ol"></i></a>
+      <button class="btn btn--icon" id="changeFont"><i class="bi bi-fonts"></i></button>
+      <button class="btn btn--icon" id="changeTheme">
+        <i class="bi bi-sun" id="lightMode"></i>
+        <i class="bi bi-moon-stars" id="darkMode" style="display: none"></i>
+      </button>
+    </nav>
+    <div class="page">
+      <hr />
+      <div class="content">
+        <h2>Solution for Programming Exercise 5.1</h2>
+        <hr class="break" />
+        <p>
+          <span class="start"><big>T</big>his page contains</span> a sample solution to one of the exercises from <a href="../index.html">Introduction to Programming Using Java</a>.
+        </p>
+        <hr />
+        <h3 class="exercise">Exercise 5.1:</h3>
+        <p>
+          In all versions of the <span class="classname">PairOfDice</span> class in <a href="../c5/s2.html">Section&nbsp;5.2</a>, the instance variables <span class="code">die1</span> and <span class="code">die2</span> are declared to be <span class="code">public</span>. They really should be
+          <span class="code">private</span>, so that they would be protected from being changed from outside the class. Write another version of the <span class="classname">PairOfDice</span> class in which the instance variables <span class="code">die1</span> and <span class="code">die2</span> are
+          <span class="code">private</span>. Your class will need "getter" methods that can be used to find out the values of <span class="code">die1</span> and <span class="code">die2</span>. (The idea is to protect their values from being changed from outside the class, but still to allow the
+          values to be read.) Include other improvements in the class, including at least a <span class="code">toString()</span> method. Test your class with a short program that counts how many times a pair of dice is rolled, before the total of the two dice is equal to two.
+        </p>
 
-<hr>
-<div class="exercisesubtitle" align="center">
-<big><b>Discussion</b></big>
-</div>
-<hr>
+        <hr />
+        <div class="exercisesubtitle" align="center">
+          <big><b>Discussion</b></big>
+        </div>
+        <hr />
 
-<p>The versions of the <span class="classname">PairOfDice</span> class in Section 2 differ in how the
-dice are initialized. I like the idea of initializing the dice to random
-values, so I will work with the following version:</p>
+        <p>The versions of the <span class="classname">PairOfDice</span> class in Section 2 differ in how the dice are initialized. I like the idea of initializing the dice to random values, so I will work with the following version:</p>
 
-
-<pre>public class PairOfDice {
+        <pre>
+public class PairOfDice {
 
     public int die1;   // Number showing on the first die.
     public int die2;   // Number showing on the second die.
@@ -67,74 +70,53 @@ values, so I will work with the following version:</p>
         die2 = (int)(Math.random()*6) + 1;
     }
     
-} // end class PairOfDice</pre>
+} // end class PairOfDice</pre
+        >
 
+        <p>
+          After a <span class="classname">PairOfDice</span> object has just been created, the number on each die is definitely between 1 and 6, just like the number on a real die. Can we be sure that this will always be true? Not if the instance variables <span class="code">die1</span> and
+          <span class="code">die2</span> are <span class="code">public</span>, since they can be changed from outside the class. There is nothing to stop someone from changing them to 42 and -17 or anything else. It's not good enough to say that you're not supposed to do that with dice. I want an
+          absolute guarantee that my dice objects can only have the values that real dice could have. By making <span class="code">die1</span> and <span class="code">die2</span> <span class="code">private</span>, I can have that guarantee, because the code that I write in the
+          <span class="classname">PairOfDice</span> class is the only code that will ever directly affect the values of the variables.
+        </p>
 
-<p>After a <span class="classname">PairOfDice</span> object has just been created, the number on each
-die is definitely between 1 and 6, just like the number on a real die. Can we
-be sure that this will always be true? Not if the instance variables
-<span class="code">die1</span> and <span class="code">die2</span> are <span class="code">public</span>, since they can be changed
-from outside the class. There is nothing to stop someone from changing them to
-42 and -17 or anything else. It's not good enough to say that you're not
-supposed to do that with dice. I want an absolute guarantee that my dice
-objects can only have the values that real dice could have. By making
-<span class="code">die1</span> and <span class="code">die2</span> <span class="code">private</span>, I can have that guarantee,
-because the code that I write in the <span class="classname">PairOfDice</span> class is the only code
-that will ever directly affect the values of the variables.</p>
+        <p>
+          So, we will make <span class="code">die1</span> and <span class="code">die2</span> private, and add instance methods <span class="code">getDie1()</span> and <span class="code">getDie2()</span> to return the values of <span class="code">die1</span> and <span class="code">die2</span>. These
+          are "getter" methods that get the value of a member variable, and their names follow the convention that the name of a getter method consists of "get" followed by a capitalized version of the variable name. It would still be useful to be able to set the values of the dice, but we want to
+          make it impossible to set the value to anything outside the range 1 to 6. The solution is to provide "setter" methods that throw an exception when the value is illegal.
+        </p>
 
+        <p>
+          I also added the <span class="code">toString()</span> method from <a href="../c5/s3.html#OOP.3.2">Subsection&nbsp;5.3.3</a>. As for other improvements, I can foresee that people who use my class will often be interested in the total on the dice, so they will tend to say things like "<span
+            class="code"
+            >dice.getDie1() + dice.getDie2()</span
+          >" a lot. If this is going to be done over and over, why not provide a method in the class to do it? So, I added a method <span class="code">getTotal()</span> that returns the total value showing on the two dice. The complete, modified <span class="classname">PairOfDice</span> class is
+          shown below.
+        </p>
 
-<p>So, we will make <span class="code">die1</span> and <span class="code">die2</span> private, and add instance
-methods <span class="code">getDie1()</span> and <span class="code">getDie2()</span> to return the values of
-<span class="code">die1</span> and <span class="code">die2</span>.  These are "getter" methods that get the
-value of a member variable, and their names follow the convention that the name of
-a getter method consists of "get" followed by a capitalized version of the variable name.
-It would still be useful to be able to set the values of the dice, but we want to
-make it impossible to set the value to anything outside the range 1 to 6.  The solution
-is to provide "setter" methods that throw an exception when the value is illegal.
-</p>
+        <p>
+          (Here is another improvement that I thought about. We could modify the <span class="code">roll()</span> method so that in addition to rolling the dice, it would also return an <span class="ptype">int</span> value giving the total on the dice. For example, this would allow us to replace
+          "<span class="code">dice.roll(); val = dice.getTotal()</span>" with "<span class="code">val = dice.roll()</span>". Since it's legal to call a function with a subroutine call statement, we could still say "<span class="code">dice.roll()</span>" if we just want to roll the dice without
+          recording the total immediately. However, I decided that it was a little clearer to leave this feature out.)
+        </p>
 
+        <p>
+          The main program is easy, especially since we've done the same problem before without using objects (in <a href="../c3/ex1-ans.html">Exercise&nbsp;3.1</a>). Note how the pair of dice object is used. To test whether or not the total on the dice is 2, I use the test "<span class="code"
+            >while (dice.getTotal() != 2)</span
+          >". Because of the <span class="code">toString()</span> method, I just have to say say
+        </p>
 
-<p>I also added the <span class="code">toString()</span> method from <a href="../c5/s3.html#OOP.3.2">Subsection&nbsp;5.3.3</a>.
-As for other improvements, I can foresee that
-people who use my class will often be interested in the total on the dice, so
-they will tend to say things like "<span class="code">dice.getDie1() + dice.getDie2()</span>" a
-lot. If this is going to be done over and over, why not provide a method in the
-class to do it? So, I added a method <span class="code">getTotal()</span> that returns
-the total value showing on the two dice. The complete, modified
-<span class="classname">PairOfDice</span> class is shown below.</p>
+        <pre>System.out.println("The dice come up " + dice );</pre>
 
+        <p>to show the numbers on the two dice.</p>
 
-<p>(Here is another improvement that I thought about. We could modify the
-<span class="code">roll()</span> method so that in addition to rolling the dice, it would also
-return an <span class="ptype">int</span> value giving the total on the dice. For example, this
-would allow us to replace "<span class="code">dice.roll(); val = dice.getTotal()</span>" with
-"<span class="code">val = dice.roll()</span>". Since it's legal to call a function with a
-subroutine call statement, we could still say "<span class="code">dice.roll()</span>" if we just
-want to roll the dice without recording the total immediately. However, I
-decided that it was a little clearer to leave this feature out.)</p>
+        <hr />
+        <div class="exercisesubtitle" align="center">
+          <big><b>The Solution</b></big>
+        </div>
+        <hr />
 
-
-<p>The main program is easy, especially since we've done the same problem
-before without using objects (in <a href="../c3/ex1-ans.html">Exercise&nbsp;3.1</a>).
-Note how the pair of dice object is used. To test whether or not the
-total on the dice is 2, I use the test "<span class="code">while (dice.getTotal() != 2)</span>".
-Because of the <span class="code">toString()</span> method,
-I just have to say say</p>
-
-
-<pre>System.out.println("The dice come up " + dice );</pre>
-
-
-<p>to show the numbers on the two dice.</p>
-
-
-<hr>
-<div class="exercisesubtitle" align="center">
-<big><b>The Solution</b></big>
-</div>
-<hr>
-
-<pre class="exercisecode">
+        <pre class="exercisecode">
 
 
 <b><span class="newcode">The Modified PairOfDice Class</span></b>
@@ -266,16 +248,11 @@ I just have to say say</p>
         
      }  // end class RollFor2
 </pre>
-
-</div>
-<hr>
-<div align="right">
-<small>
-        [ <a href="exercises.html">Exercises</a> |
-        <a href="index.html">Chapter Index</a> | 
-        <a href="../index.html">Main Index</a> ]
-    </small>
-</div>
-</div>
-</body>
+      </div>
+      <hr />
+      <div align="right">
+        <small> [ <a href="exercises.html">Exercises</a> | <a href="index.html">Chapter Index</a> | <a href="../index.html">Main Index</a> ] </small>
+      </div>
+    </div>
+  </body>
 </html>
