@@ -53,7 +53,7 @@ pre {
 code,
 pre {
   font-family: var(--font-code);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   hyphens: auto;
 }
 
@@ -128,87 +128,87 @@ Author: Pedro Oliveira <kanytu@gmail . com>
 }
 
 // light mode
-html[data-theme="light"] {
-  /*
-Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
-*/
+// html[data-theme="light"] {
+//   /*
+// Arduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>
+// */
 
-  .hljs {
-    background: #ecedee;
-    color: #434f54;
-  }
+//   .hljs {
+//     background: #ecedee;
+//     color: #434f54;
+//   }
 
-  .hljs-subst {
-    color: #434f54;
-  }
+//   .hljs-subst {
+//     color: #434f54;
+//   }
 
-  .hljs-keyword,
-  .hljs-attribute,
-  .hljs-selector-tag,
-  .hljs-doctag,
-  .hljs-name {
-    color: #00979d;
-  }
+//   .hljs-keyword,
+//   .hljs-attribute,
+//   .hljs-selector-tag,
+//   .hljs-doctag,
+//   .hljs-name {
+//     color: #00979d;
+//   }
 
-  .hljs-built_in,
-  .hljs-literal,
-  .hljs-bullet,
-  .hljs-code,
-  .hljs-addition {
-    color: #d35400;
-  }
+//   .hljs-built_in,
+//   .hljs-literal,
+//   .hljs-bullet,
+//   .hljs-code,
+//   .hljs-addition {
+//     color: #d35400;
+//   }
 
-  .hljs-regexp,
-  .hljs-symbol,
-  .hljs-variable,
-  .hljs-template-variable,
-  .hljs-link,
-  .hljs-selector-attr,
-  .hljs-selector-pseudo {
-    color: #00979d;
-  }
+//   .hljs-regexp,
+//   .hljs-symbol,
+//   .hljs-variable,
+//   .hljs-template-variable,
+//   .hljs-link,
+//   .hljs-selector-attr,
+//   .hljs-selector-pseudo {
+//     color: #00979d;
+//   }
 
-  .hljs-type,
-  .hljs-string,
-  .hljs-selector-id,
-  .hljs-selector-class,
-  .hljs-quote,
-  .hljs-template-tag,
-  .hljs-deletion {
-    color: #005c5f;
-  }
+//   .hljs-type,
+//   .hljs-string,
+//   .hljs-selector-id,
+//   .hljs-selector-class,
+//   .hljs-quote,
+//   .hljs-template-tag,
+//   .hljs-deletion {
+//     color: #005c5f;
+//   }
 
-  .hljs-comment {
-    color: rgba(149, 165, 166, 0.8);
-  }
+//   .hljs-comment {
+//     color: rgba(149, 165, 166, 0.8);
+//   }
 
-  .hljs-meta .hljs-keyword {
-    color: #728e00;
-  }
+//   .hljs-meta .hljs-keyword {
+//     color: #728e00;
+//   }
 
-  .hljs-meta {
-    color: #434f54;
-  }
+//   .hljs-meta {
+//     color: #434f54;
+//   }
 
-  .hljs-emphasis {
-    font-style: italic;
-  }
+//   .hljs-emphasis {
+//     font-style: italic;
+//   }
 
-  .hljs-strong {
-    font-weight: bold;
-  }
+//   .hljs-strong {
+//     font-weight: bold;
+//   }
 
-  .hljs-function {
-    color: #728e00;
-  }
+//   .hljs-function {
+//     color: #728e00;
+//   }
 
-  .hljs-title,
-  .hljs-section {
-    color: #880000;
-    font-weight: bold;
-  }
+//   .hljs-title,
+//   .hljs-section {
+//     color: #880000;
+//     font-weight: bold;
+//   }
 
-  .hljs-number {
-    color: #8a7b52;
-  }
-}
+//   .hljs-number {
+//     color: #8a7b52;
+//   }
+// }

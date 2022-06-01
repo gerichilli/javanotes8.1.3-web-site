@@ -99,7 +99,8 @@ span.bnf {
 
 span.code {
   font-family: var(--font-code);
-  background-color: var(--inlineCodeBg);
+  border: 1px solid;
+  border-color: var(--borderPrimary);
   color: var(--inlineCodeBase);
   font-size: 0.875rem;
   padding: 0 0.25em;

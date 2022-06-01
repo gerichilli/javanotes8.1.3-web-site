@@ -1,14 +1,14 @@
 html {
   /* FONTS */
   --font-serif: "IBM Plex Serif", Georgia, Times New Roman, serif;
-  --font-sans: "Karla", BlinkMacSystemFont, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+  --font-sans: BlinkMacSystemFont, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
   --font-code: "Roboto Mono", monospace;
 }
 
 html,
 html[data-theme="dark"] {
-  --backgroundBase: #1c1e21;
-  --textBase: #e5e6e9;
+  --backgroundBase: #121212;
+  --textBase: #e1e1e1;
   --titleBase: #ffffff;
 
   --borderPrimary: #35383f;
@@ -23,20 +23,20 @@ html[data-theme="dark"] {
   --inlineCodeBg: #282a36;
   --inlineCodeBase: #c4c7cf;
 
-  --textAction: #4d77ff;
+  --textAction: #0aa1dd;
   --textQuestion: #fdc073;
   --textAnswer: #2fdd92;
   --textActionHover: #e3796a;
   --textActionActive: #d2483e;
-  --textActionVisited: #5584ac;
+  --textActionVisited: #2155cd;
 
   --textUnknowned: #fc4f4f;
 }
 
 html[data-theme="light"] {
-  --backgroundBase: #f8fafc;
-  --textBase: #334155;
-  --titleBase: #1a3c40;
+  --backgroundBase: #f3f5d6;
+  --textBase: #121212;
+  --titleBase: #000;
 
   --borderPrimary: #ddd;
 
@@ -44,5 +44,5 @@ html[data-theme="light"] {
   --textQuestion: #d67d3e;
 
   --inlineCodeBg: #e2e3e7;
-  --inlineCodeBase: #76777c;
+  --inlineCodeBase: #555;
 }
